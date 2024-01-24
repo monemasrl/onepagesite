@@ -1,95 +1,55 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import logo from "../../public/image/stolebucks.jpg";
+const fakeData = {
+  name: "ditta splendida",
+  testo_societa:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  sede: "via roma 1",
+  cap: "00100",
+  citta: "roma",
+  dati_societari: "p.iva 123456789",
+  capitale: "€ 100.000,00",
+  contatti: {
+    telefono: "06 1234567",
+    email: "ditta@gmail.com",
+  },
+  social: {
+    facebook: "https://www.facebook.com",
+    instagram: "https://www.instagram.com",
+    twitter: "https://www.twitter.com",
+  },
+  main_image: {
+    url: "https://via.placeholder.com/150",
+    alt: "placeholder",
+  },
+  logo: {
+    url: logo,
+    alt: "placeholder",
+  },
+  background_image: {
+    url: "https://picsum.photos/seed/picsum/1920/1080",
+    alt: "placeholder",
+  },
+};
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className={styles.main}>
+      <Image
+        src={fakeData.background_image.url}
+        alt={fakeData.background_image.alt}
+        layout="fill"
+        objectFit="cover"
+        className={styles.background}
+      />
+      <div className={styles.wrapper}>
+        <Header logo={fakeData.logo} name={fakeData.name} />
+        <main className={styles.content}>content</main>
+        <Footer />
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
