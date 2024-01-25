@@ -1,3 +1,4 @@
+"use client";
 type THeader = {
   logo: { url: StaticImageData; alt: string };
   name: string;
@@ -5,8 +6,12 @@ type THeader = {
 
 import style from "./components.module.scss";
 import Image, { StaticImageData } from "next/image";
+import { useContext } from "react";
+import { Context } from "../context/context";
 
 function Header({ logo, name }: THeader) {
+  const data = useContext(Context);
+
   return (
     <header className={style.header}>
       <div className={style.header__name}>
@@ -15,7 +20,7 @@ function Header({ logo, name }: THeader) {
       </div>
       <nav>
         <ul>
-          <li>Staff</li>
+          <li onClick={() => data?.setDrawer(true)}>Staff</li>
           <li>Contatti</li>
         </ul>
       </nav>

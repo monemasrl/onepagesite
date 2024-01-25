@@ -1,15 +1,19 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import logo from "../../public/image/stolebucks.jpg";
+import Drawer from "./components/drawer";
+import { LuPhoneCall, LuFacebook, LuInstagram, LuMail } from "react-icons/lu";
+import { ContextProvider } from "./context/context";
 const fakeData = {
-  name: "ditta splendida",
+  name: "Ditta Splendida",
+  titolo_testo_societa: "la nostra storia",
   testo_societa:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  sede: "via roma 1",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum, voluptatibus, quia voluptas quibusdam quos voluptatem quod quae doloribus voluptates doloremque. Quisquam, voluptatum, voluptatibus, quia voluptas quibusdam quos voluptatem quod quae doloribus voluptates doloremque.",
+  sede: "Via Roma 1",
   cap: "00100",
-  citta: "roma",
+  citta: "Roma",
   dati_societari: "p.iva 123456789",
   capitale: "€ 100.000,00",
   contatti: {
@@ -22,7 +26,7 @@ const fakeData = {
     twitter: "https://www.twitter.com",
   },
   main_image: {
-    url: "https://via.placeholder.com/150",
+    url: "https://picsum.photos/seed/as/500",
     alt: "placeholder",
   },
   logo: {
@@ -44,12 +48,89 @@ export default function Home() {
         layout="fill"
         objectFit="cover"
         className={styles.background}
-      />
-      <div className={styles.wrapper}>
-        <Header logo={fakeData.logo} name={fakeData.name} />
-        <main className={styles.content}>content</main>
-        <Footer />
-      </div>
+      />{" "}
+      <ContextProvider>
+        <div className={styles.wrapper}>
+          <Header logo={fakeData.logo} name={fakeData.name} />
+          <main className={styles.content}>
+            <section className={styles.content__intro}>
+              <Image
+                src={fakeData.main_image.url}
+                alt={fakeData.main_image.alt}
+                width={500}
+                height={500}
+              />
+              <div className={styles.content__intro__data}>
+                <h2>{fakeData.titolo_testo_societa}</h2>
+                <p>{fakeData.testo_societa}</p>
+              </div>
+            </section>
+            <section className={styles.content__dati}>
+              <ul>
+                <li>
+                  <h4>Sede</h4>
+                  <p>{fakeData.sede}</p>
+                  <p>
+                    {fakeData.cap}, {fakeData.citta}
+                  </p>
+                </li>
+                <li>
+                  <h4>Dati Societari</h4>
+                  <p>{fakeData.dati_societari}</p>
+                  <p>capitale: {fakeData.capitale}</p>
+                </li>
+                <li>
+                  <h4>Contatti</h4>
+                  <p>
+                    <span>
+                      <LuPhoneCall />
+                    </span>
+                    {fakeData.contatti.telefono}
+                  </p>
+                  <p>
+                    <span>
+                      <LuMail />
+                    </span>
+                    {fakeData.contatti.email}
+                  </p>
+                </li>
+                <li>
+                  <h4>Seguici</h4>
+                  <p>
+                    <span>
+                      <LuFacebook />{" "}
+                    </span>
+                    <a
+                      href={fakeData.social.facebook}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Facebook
+                    </a>
+                  </p>
+                  <p>
+                    {" "}
+                    <span>
+                      <LuInstagram />{" "}
+                    </span>
+                    <a
+                      href={fakeData.social.instagram}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Instagram
+                    </a>
+                  </p>
+                </li>
+              </ul>
+            </section>
+          </main>
+          <Footer />
+          <Drawer>
+            <div>test</div>
+          </Drawer>
+        </div>
+      </ContextProvider>
     </div>
   );
 }

@@ -1,7 +1,46 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 0 4rem;
   &__name {
     display: flex;
+    align-items: center;
+  }
+  nav {
+    ul {
+      display: flex;
+    }
+    li {
+      margin: 0 1rem;
+    }
+  }
+}
+.footer {
+  margin: 3rem 0 0 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  max-height: 300px;
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background-color: aliceblue;
+  z-index: 100;
+  border-radius: 1rem;
+  &__close {
+    text-align: center;
+    padding: 1rem;
+    button {
+      font-size: 2rem;
+    }
   }
 }
