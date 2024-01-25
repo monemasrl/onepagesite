@@ -126,9 +126,7 @@ export default function Home() {
             </section>
           </main>
           <Footer />
-          <Drawer>
-            <div>test</div>
-          </Drawer>
+          <Drawer />
         </div>
       </ContextProvider>
     </div>

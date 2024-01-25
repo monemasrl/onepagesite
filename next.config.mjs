@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+// Gestione delle immagini remote, host e protocollo
+
 const nextConfig = {
   images: {
     remotePatterns: [
