@@ -45,8 +45,8 @@ export default function Home() {
       <Image
         src={fakeData.background_image.url}
         alt={fakeData.background_image.alt}
-        layout="fill"
-        objectFit="cover"
+        width={1990}
+        height={1080}
         className={styles.background}
       />{" "}
       <ContextProvider>

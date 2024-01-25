@@ -94,18 +94,21 @@ function ListStaff() {
       ) : state.error ? (
         "Errore caricamento dati"
       ) : (
-        <ul>
-          {state.staff.map((staff: Tstaff) => (
-            <li key={staff.id} className={style.listStaff__item}>
-              <Image src={avatar} alt="avatar" width={100} height={100} />
-              <ul>
-                <li className={style.listStaff__item__name}>{staff.name}</li>
-                <li>{staff.role}</li>
-                <li>{staff.email}</li>
-              </ul>
-            </li>
-          ))}
-        </ul>
+        <>
+          <h3>Il nostro staff</h3>
+          <ul>
+            {state.staff.map((staff: Tstaff) => (
+              <li key={staff.id} className={style.listStaff__item}>
+                <Image src={avatar} alt="avatar" width={100} height={100} />
+                <ul>
+                  <li className={style.listStaff__item__name}>{staff.name}</li>
+                  <li>{staff.role}</li>
+                  <li>{staff.email}</li>
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </section>
   );
