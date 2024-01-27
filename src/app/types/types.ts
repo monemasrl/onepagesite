@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 
 type Tstate = {
     drawer: boolean;
@@ -5,5 +6,13 @@ type Tstate = {
     dataDrawer: string | null;
     setDataDrawer: React.Dispatch<React.SetStateAction<string | null>>;
 };
+type Tstaff = {
+    id: number;
+    email: string;
+    password: string;
+    name: string;
+    role: string;
+    avatar: string | StaticImageData;
+};
 
-export type { Tstate };
+export type { Tstate, Tstaff };

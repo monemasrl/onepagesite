@@ -6,6 +6,10 @@ import logo from "../../public/image/stolebucks.jpg";
 import Drawer from "./components/drawer";
 import { LuPhoneCall, LuFacebook, LuInstagram, LuMail } from "react-icons/lu";
 import { ContextProvider } from "./context/context";
+import avatar from "../../public/image/avatar.webp";
+import { Tstaff } from "./types/types";
+import AnimatedWrapper from "./components/animatedWrapper";
+
 const fakeData = {
   name: "Ditta Splendida",
   titolo_testo_societa: "la nostra storia",
@@ -37,9 +41,45 @@ const fakeData = {
     url: "https://picsum.photos/seed/picsum/1920/1080",
     alt: "placeholder",
   },
+  staff: [
+    {
+      id: 1,
+      email: "pippo@pippo.it",
+      password: "123",
+      name: "Pippo",
+      role: "CEO",
+      avatar: avatar,
+    },
+    {
+      id: 2,
+      email: "pluto@pluto.it",
+      password: "123",
+      name: "Pluto",
+      role: "Amministratore delegato",
+      avatar: avatar,
+    },
+    {
+      id: 3,
+      email: "paperino@paperino.it",
+      password: "123",
+      name: "Paperino",
+      role: "Reparto commerciale",
+      avatar: avatar,
+    },
+    {
+      id: 4,
+      email: "nonnapapera@nonnalit",
+      password: "123",
+      name: "NonnaPapera",
+      role: "Assistenza tecnica",
+      avatar: avatar,
+    },
+  ],
 };
 
 export default function Home() {
+  const staff: Tstaff[] = fakeData.staff;
+
   return (
     <div className={styles.main}>
       <Image
@@ -51,6 +91,7 @@ export default function Home() {
       />{" "}
       <ContextProvider>
         <div className={styles.wrapper}>
+          <AnimatedWrapper logo={fakeData.logo} />
           <Header logo={fakeData.logo} name={fakeData.name} />
           <main className={styles.content}>
             <section className={styles.content__intro}>
@@ -126,7 +167,7 @@ export default function Home() {
             </section>
           </main>
           <Footer />
-          <Drawer />
+          <Drawer staff={staff} />
         </div>
       </ContextProvider>
     </div>
