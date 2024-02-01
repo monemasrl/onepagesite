@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   margin: 3rem 0;
+  height: 90vh;
   @media screen and (max-width: 768px) {
     margin: 0;
   }
@@ -14,6 +15,14 @@
   position: fixed;
   width: 100%;
 }
+.video {
+  z-index: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .wrapper {
   max-width: 1000px;
   width: 100%;
@@ -25,6 +34,8 @@
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  //animation: enter 1s 1.5s forwards;
 }
 .content {
   padding: 0 4rem;
@@ -91,5 +102,13 @@
         }
       }
     }
+  }
+}
+@keyframes enter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
