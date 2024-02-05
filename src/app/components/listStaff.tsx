@@ -2,8 +2,13 @@ import { useEffect, useReducer } from "react";
 import style from "./components.module.scss";
 import Image from "next/image";
 import avatar from "../../../public/image/avatar.webp";
-import { Tstaff } from "../types/types";
-function ListStaff({ list }: { list: Tstaff[] }) {
+import { ItemsSitesStaff } from "@/generated2";
+
+function ListStaff({
+  list,
+}: {
+  list: (ItemsSitesStaff | undefined)[] | undefined;
+}) {
   return (
     <section className={style.listStaff}>
       <>

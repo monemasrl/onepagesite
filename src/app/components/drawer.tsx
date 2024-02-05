@@ -6,9 +6,13 @@ import { LuX } from "react-icons/lu";
 import ListStaff from "./listStaff";
 import { AnimatePresence, motion } from "framer-motion";
 import FormContatti from "./formContatti";
-import { Tstaff } from "../types/types";
+import { ItemsSitesStaff } from "@/generated2";
 
-function Drawer({ staff }: { staff: Tstaff[] }) {
+function Drawer({
+  staff,
+}: {
+  staff?: (ItemsSitesStaff | undefined)[] | undefined;
+}) {
   const data = useContext(Context);
 
   return (
@@ -25,7 +29,9 @@ function Drawer({ staff }: { staff: Tstaff[] }) {
               <button onClick={() => data?.setDrawer(false)}>
                 <LuX />
               </button>
-              {data?.dataDrawer === "STAFF" && <ListStaff list={staff} />}
+              {data?.dataDrawer === "STAFF" && staff && (
+                <ListStaff list={staff} />
+              )}
               {data?.dataDrawer === "CONTATTI" && <FormContatti />}
             </div>
           </motion.section>

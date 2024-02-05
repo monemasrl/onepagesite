@@ -1,13 +1,14 @@
 "use client";
 type THeader = {
-  logo: { url: StaticImageData; alt: string };
-  name: string;
+  logo?: Files | null | undefined;
+  name?: string | null | undefined;
 };
 
 import style from "./components.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { useContext } from "react";
 import { Context } from "../context/context";
+import { Files } from "@/generated2";
 
 function Header({ logo, name }: THeader) {
   const data = useContext(Context);
@@ -26,10 +27,19 @@ function Header({ logo, name }: THeader) {
   }
   return (
     <header className={style.header}>
-      <div className={style.header__name}>
-        <Image src={logo.url} alt={logo.alt} width={100} height={100} />
-        <h2>{name}</h2>
-      </div>
+      {(logo || name) && (
+        <div className={style.header__name}>
+          {logo && (
+            <Image
+              src={`https://cmdb.service.monema.dev/assets/${logo.filename_disk}`}
+              alt={logo.description || "imageLogo"}
+              width={100}
+              height={100}
+            />
+          )}
+          <h2>{name}</h2>
+        </div>
+      )}
       <nav>
         <ul>
           <li

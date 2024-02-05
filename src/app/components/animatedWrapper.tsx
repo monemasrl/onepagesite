@@ -4,13 +4,14 @@ import styles from "./components.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { GoArrowRight } from "react-icons/go";
 import { type Dispatch, SetStateAction } from "react";
+import { Files } from "@/generated2";
 
 type Tdata = {
-  logo: { url: StaticImageData; alt: string };
-  name: string;
-  sede: string;
-  contatti: { telefono: string; email: string };
-  citta: string;
+  logo?: Files;
+  name: string | null | undefined;
+  sede?: string;
+  contatti?: { telefono?: string; email?: string };
+  citta?: string;
   hideInitial: boolean;
   setHideInitial: Dispatch<SetStateAction<boolean>>;
 };
@@ -24,6 +25,7 @@ function AnimatedWrapper({
   hideInitial,
   setHideInitial,
 }: Tdata) {
+  console.log(logo);
   return (
     <AnimatePresence>
       {hideInitial && (
@@ -58,7 +60,14 @@ function AnimatedWrapper({
             initial="start"
             animate={["mid", "end"]}
           >
-            <Image src={logo.url} alt={logo.alt} width={120} height={120} />
+            {logo && (
+              <Image
+                src={`https://cmdb.service.monema.dev/assets/${logo.filename_disk}`}
+                alt={logo.description || "imageLogo"}
+                width={120}
+                height={120}
+              />
+            )}
           </motion.div>
           <div className={styles.dataStart}>
             <motion.div
@@ -69,13 +78,17 @@ function AnimatedWrapper({
             >
               {name}
             </motion.div>
-            <div className={styles.dataStart__sede}>
-              {sede}-{citta}
-            </div>
-            <ul className={styles.dataStart__contatti}>
-              <li>Tel. {contatti.telefono}</li>
-              <li>Mail. {contatti.email}</li>
-            </ul>
+            {(sede || citta) && (
+              <div className={styles.dataStart__sede}>
+                {sede}-{citta}
+              </div>
+            )}
+            {contatti && (
+              <ul className={styles.dataStart__contatti}>
+                {contatti.telefono && <li>Tel. {contatti.telefono}</li>}
+                {contatti.email && <li>Mail. {contatti.email}</li>}
+              </ul>
+            )}
             <div className={styles.dataStart__icon}>
               <motion.div
                 onClick={() => setHideInitial(false)}

@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "openapi --input 'https://cmdb.service.monema.dev/api-docs/oas' --output ./src/generated2 --client axios --useOptions --name CMDBApiClient"
   },
   "dependencies": {
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
+    "openapi-typescript-codegen": "^0.27.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",

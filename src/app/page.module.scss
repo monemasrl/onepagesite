@@ -76,7 +76,7 @@
   }
   &__dati {
     margin-top: 3rem;
-    ul {
+    > ul {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       column-gap: 2rem;
