@@ -8,7 +8,22 @@ import Image, { StaticImageData } from "next/image";
 import AnimatedWrapper from "./animatedWrapper";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { type ItemsSites, Files, ItemsSitesStaff } from "@/generated2";
+import { type ItemsSites, Files, ItemsSitesStaff } from "../../generated2";
+
+type Taddresses = {
+  city: string;
+  country: string;
+  email: string;
+  name: string;
+  phone: string;
+  province: string;
+  street: string;
+  zip: string;
+};
+type Tsocial = {
+  address: string;
+  type: string;
+};
 
 function MainContent({
   data,
@@ -28,6 +43,7 @@ function MainContent({
   }
 
   if (data) {
+    console.log(data);
     const logo: Files | undefined = assets?.find(
       (item) => item.id === data.logo
     );
@@ -79,13 +95,15 @@ function MainContent({
                       <h4>Sedi</h4>
                       {data.addresses && (
                         <ul>
-                          {data.addresses.map((address, index) => (
-                            <li key={index}>
-                              <p>{address.street}</p>
-                              <p>{address.city}</p>
-                              <p>{address.zip}</p>
-                            </li>
-                          ))}
+                          {data.addresses.map(
+                            (address: Taddresses, index: number) => (
+                              <li key={index}>
+                                <p>{address.street}</p>
+                                <p>{address.city}</p>
+                                <p>{address.zip}</p>
+                              </li>
+                            )
+                          )}
                         </ul>
                       )}
                     </li>
@@ -117,7 +135,7 @@ function MainContent({
                       <li>
                         <h4>Seguici</h4>
                         <ul>
-                          {data.social.map((social, index) => (
+                          {data.social.map((social: Tsocial, index: number) => (
                             <li key={index}>
                               <span>
                                 {social.type === "facebook" ? (

@@ -1,4 +1,4 @@
-import { AuthenticationService } from "@/generated2";
+import { AuthenticationService, ItemsSites } from "../../generated2";
 
 async function getToken() {
 
@@ -18,7 +18,7 @@ async function getToken() {
                 })
             }
         );
-        const data = await response.json();
+        const data: any = await response.json();
         if (data.error) {
             console.log(data.error);
         } else {
@@ -29,8 +29,8 @@ async function getToken() {
 
 async function fetchSiteData(token: AuthenticationService) {
     if (token && process.env.URL_PAGE_DATA) {
-        const data = await fetch(process.env.URL_PAGE_DATA)
-        const dataJson = await data.json()
+        const data: Response = await fetch(process.env.URL_PAGE_DATA)
+        const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
         } {
@@ -44,7 +44,7 @@ async function fetchSiteData(token: AuthenticationService) {
 async function fetchAssetsData(token: AuthenticationService) {
     if (token && process.env.URL_ASSET) {
         const data = await fetch(process.env.URL_ASSET)
-        const dataJson = await data.json()
+        const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
         } {
@@ -55,10 +55,10 @@ async function fetchAssetsData(token: AuthenticationService) {
     }
 }
 
-async function fetchStaffData(token) {
+async function fetchStaffData(token: AuthenticationService) {
     if (token && process.env.URL_STAFF) {
         const data = await fetch(process.env.URL_STAFF)
-        const dataJson = await data.json()
+        const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
         } {

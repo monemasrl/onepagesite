@@ -10,6 +10,8 @@
     "generate": "openapi --input 'https://cmdb.service.monema.dev/api-docs/oas' --output ./src/generated2 --client axios --useOptions --name CMDBApiClient"
   },
   "dependencies": {
+    "axios": "^1.6.7",
+    "form-data": "^4.0.0",
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
     "openapi-typescript-codegen": "^0.27.0",

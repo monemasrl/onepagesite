@@ -8,7 +8,7 @@ import style from "./components.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { useContext } from "react";
 import { Context } from "../context/context";
-import { Files } from "@/generated2";
+import { Files } from "../../generated2";
 
 function Header({ logo, name }: THeader) {
   const data = useContext(Context);

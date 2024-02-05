@@ -4,7 +4,7 @@ import styles from "./components.module.scss";
 import Image, { StaticImageData } from "next/image";
 import { GoArrowRight } from "react-icons/go";
 import { type Dispatch, SetStateAction } from "react";
-import { Files } from "@/generated2";
+import { Files } from "../../generated2";
 
 type Tdata = {
   logo?: Files;
@@ -25,7 +25,6 @@ function AnimatedWrapper({
   hideInitial,
   setHideInitial,
 }: Tdata) {
-  console.log(logo);
   return (
     <AnimatePresence>
       {hideInitial && (

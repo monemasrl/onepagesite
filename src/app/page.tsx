@@ -9,7 +9,7 @@ import {
   fetchAssetsData,
   fetchStaffData,
 } from "./api/getData";
-import { Files, ItemsSites, ItemsSitesStaff } from "@/generated2";
+import { Files, ItemsSites, ItemsSitesStaff } from "../generated2";
 
 async function Home() {
   const token = await getToken();

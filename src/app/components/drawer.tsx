@@ -6,7 +6,7 @@ import { LuX } from "react-icons/lu";
 import ListStaff from "./listStaff";
 import { AnimatePresence, motion } from "framer-motion";
 import FormContatti from "./formContatti";
-import { ItemsSitesStaff } from "@/generated2";
+import { ItemsSitesStaff } from "../../generated2";
 
 function Drawer({
   staff,
