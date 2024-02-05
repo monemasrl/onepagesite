@@ -7,7 +7,12 @@ import {
   fetchAssetsData,
   fetchStaffData,
 } from "./api/getData";
-import { Files, ItemsSites, ItemsSitesStaff } from "./generated2";
+import {
+  AuthenticationService,
+  Files,
+  ItemsSites,
+  ItemsSitesStaff,
+} from "./generated2";
 
 async function Home() {
   const token = await getToken();
@@ -18,7 +23,7 @@ async function Home() {
   const dataAssets: { data: Files[] } = await fetchAssetsData(token);
   const dataStaff: { data: ItemsSitesStaff[] } = await fetchStaffData(token);
 
-  if (dataSite) {
+  if (dataSite && dataAssets && dataStaff) {
     return (
       <div className={styles.main}>
         <ContextProvider>
