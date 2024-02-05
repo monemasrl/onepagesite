@@ -134,7 +134,7 @@ function MainContent({
                     {data.social && (
                       <li>
                         <h4>Seguici</h4>
-                        <ul>
+                        <ul className={styles.content__dati__social}>
                           {data.social.map((social: Tsocial, index: number) => (
                             <li key={index}>
                               <span>
