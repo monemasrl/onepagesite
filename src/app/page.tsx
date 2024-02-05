@@ -16,10 +16,12 @@ import {
 
 async function Home() {
   const token = await getToken();
-  const data = await fetchSiteData(token);
-  const dataSite = await data.data.find(
-    (item: ItemsSites) => item.id === process.env.SITE_ID
-  );
+  const data = token && (await fetchSiteData(token));
+  const dataSite =
+    token &&
+    (await data.data.find(
+      (item: ItemsSites) => item.id === process.env.SITE_ID
+    ));
   const dataAssets: { data: Files[] } = await fetchAssetsData(token);
   const dataStaff: { data: ItemsSitesStaff[] } = await fetchStaffData(token);
 
