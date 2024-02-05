@@ -18,7 +18,7 @@ async function getToken() {
                 })
             }
         );
-        const data: any = await response.json();
+        const data: any | undefined = await response.json();
         if (data.error) {
             console.log(data.error);
         } else {
@@ -29,8 +29,8 @@ async function getToken() {
 
 async function fetchSiteData(token: AuthenticationService) {
     if (token && process.env.URL_PAGE_DATA) {
-        const data: Response = await fetch(process.env.URL_PAGE_DATA)
-        const dataJson: any = await data.json()
+        const data: Response | undefined = await fetch(process.env.URL_PAGE_DATA)
+        const dataJson: any | undefined = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
         } {
@@ -43,7 +43,7 @@ async function fetchSiteData(token: AuthenticationService) {
 
 async function fetchAssetsData(token: AuthenticationService) {
     if (token && process.env.URL_ASSET) {
-        const data = await fetch(process.env.URL_ASSET)
+        const data: Response | undefined = await fetch(process.env.URL_ASSET)
         const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
@@ -57,7 +57,7 @@ async function fetchAssetsData(token: AuthenticationService) {
 
 async function fetchStaffData(token: AuthenticationService) {
     if (token && process.env.URL_STAFF) {
-        const data = await fetch(process.env.URL_STAFF)
+        const data: Response | undefined = await fetch(process.env.URL_STAFF)
         const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
