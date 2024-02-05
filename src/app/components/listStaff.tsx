@@ -2,7 +2,7 @@ import { useEffect, useReducer } from "react";
 import style from "./components.module.scss";
 import Image from "next/image";
 import avatar from "../../../public/image/avatar.webp";
-import { ItemsSitesStaff } from "../../generated2";
+import { ItemsSitesStaff } from "../generated2";
 
 function ListStaff({
   list,

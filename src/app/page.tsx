@@ -1,7 +1,5 @@
 import styles from "./page.module.scss";
-import logo from "../../public/image/stolebucks.jpg";
 import { ContextProvider } from "./context/context";
-import avatar from "../../public/image/avatar.webp";
 import MainContent from "./components/mainContent";
 import {
   getToken,
@@ -9,7 +7,7 @@ import {
   fetchAssetsData,
   fetchStaffData,
 } from "./api/getData";
-import { Files, ItemsSites, ItemsSitesStaff } from "../generated2";
+import { Files, ItemsSites, ItemsSitesStaff } from "./generated2";
 
 async function Home() {
   const token = await getToken();
