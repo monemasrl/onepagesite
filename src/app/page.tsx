@@ -18,6 +18,7 @@ async function Home() {
   const dataSite = await data.data.find(
     (item: ItemsSites) => item.id === process.env.SITE_ID
   );
+  console.log(data, "data");
   const dataAssets: { data: Files[] } = await fetchAssetsData(token);
   const dataStaff: { data: ItemsSitesStaff[] } = await fetchStaffData(token);
 

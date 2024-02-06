@@ -18,10 +18,11 @@ async function getToken() {
                 })
             }
         );
-        const data: any | undefined = await response.json();
+        const data: any = await response.json();
         if (data.error) {
             console.log(data.error, 'token error');
         } else {
+
             return data;
         }
     }
