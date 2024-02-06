@@ -7,7 +7,6 @@ import {
   fetchAssetsData,
   fetchStaffData,
 } from "./api/getData";
-
 import { Files } from "./generated2/models/Files";
 import { ItemsSites } from "./generated2/models/ItemsSites";
 import { ItemsSitesStaff } from "./generated2/models/ItemsSitesStaff";
@@ -17,30 +16,27 @@ async function Home() {
   console.log(token, "token");
   const data: any | undefined = await fetchSiteData(token);
   console.log(data, "data");
-  const dataSite: any | undefined = await data.data.find(
+  /* const dataSite: any | undefined = await data.data.find(
     (item: ItemsSites) => item.id === process.env.SITE_ID
   );
-
   const dataAssets: { data: Files[] | undefined } = await fetchAssetsData(
     token
   );
   const dataStaff: { data: ItemsSitesStaff[] | undefined } =
     await fetchStaffData(token);
-
-  const [assets, staff, site] = await Promise.all([
-    fetchAssetsData(token),
-    fetchStaffData(token),
-    fetchSiteData(token),
-  ]);
-
-  if (assets && staff && site) {
+ */
+  if (true) {
     return (
       <div className={styles.main}>
-        <ContextProvider>
+        {/*    <ContextProvider>
           <>
-            <MainContent data={site} assets={assets.data} staff={staff.data} />
+            <MainContent
+              data={dataSite}
+              assets={dataAssets.data}
+              staff={dataStaff.data}
+            />
           </>
-        </ContextProvider>
+        </ContextProvider> */}
       </div>
     );
   } else {
