@@ -27,7 +27,7 @@ async function Home() {
   const dataStaff: { data: ItemsSitesStaff[] | undefined } =
     await fetchStaffData(token);
 
-  if (data && dataAssets && dataStaff) {
+  if (dataAssets && dataStaff && dataSite) {
     return (
       <div className={styles.main}>
         <ContextProvider>
