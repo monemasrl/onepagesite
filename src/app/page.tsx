@@ -27,16 +27,18 @@ async function Home() {
   const dataStaff: { data: ItemsSitesStaff[] | undefined } =
     await fetchStaffData(token);
 
-  if (dataAssets && dataStaff && dataSite) {
+  const [assets, staff, site] = await Promise.all([
+    fetchAssetsData(token),
+    fetchStaffData(token),
+    fetchSiteData(token),
+  ]);
+
+  if (assets && staff && site) {
     return (
       <div className={styles.main}>
         <ContextProvider>
           <>
-            <MainContent
-              data={dataSite}
-              assets={dataAssets.data}
-              staff={dataStaff.data}
-            />
+            <MainContent data={site} assets={assets.data} staff={staff.data} />
           </>
         </ContextProvider>
       </div>
