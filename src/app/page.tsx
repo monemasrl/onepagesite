@@ -14,13 +14,13 @@ import { ItemsSitesStaff } from "./generated2/models/ItemsSitesStaff";
 
 async function Home() {
   const token = await getToken();
-  console.log(token, "token");
+
   const data = await fetchSiteData(token);
-  console.log(data, "data");
+
   const dataSite = await data.data.find(
     (item: ItemsSites) => item.id === process.env.SITE_ID
   );
-
+  console.log(dataSite, "data");
   const dataAssets: { data: Files[] } = await fetchAssetsData(token);
   const dataStaff: { data: ItemsSitesStaff[] } = await fetchStaffData(token);
 
