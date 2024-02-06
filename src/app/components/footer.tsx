@@ -1,5 +1,5 @@
 import style from "./components.module.scss";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import map from "../../../public/image/map.jpg";
 function Footer() {
   return (

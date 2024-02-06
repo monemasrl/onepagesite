@@ -1,4 +1,4 @@
-import { AuthenticationService } from "../generated2";
+import { AuthenticationService } from "../generated2/services/AuthenticationService";
 
 async function getToken() {
 

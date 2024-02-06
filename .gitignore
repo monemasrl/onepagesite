@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-/src/generated2
+/src/app/generated2
 # testing
 /coverage
 

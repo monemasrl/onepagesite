@@ -8,7 +8,9 @@ import Image, { StaticImageData } from "next/image";
 import AnimatedWrapper from "./animatedWrapper";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { type ItemsSites, Files, ItemsSitesStaff } from "../generated2";
+import { type Files } from "../generated2/models/Files";
+import { type ItemsSites } from "../generated2/models/ItemsSites";
+import { type ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
 
 type Taddresses = {
   city: string;
