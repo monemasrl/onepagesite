@@ -21,7 +21,7 @@ async function Home() {
     (item: ItemsSites) => item.id === process.env.SITE_ID
   );
 
-  const dataAssets: { data: Files[] } | undefined = await fetchAssetsData(
+  const dataAssets: { data: Files[] | undefined } = await fetchAssetsData(
     token
   );
   const dataStaff: { data: ItemsSitesStaff[] | undefined } =
