@@ -1,16 +1,12 @@
 import style from "./components.module.scss";
-import Image from "next/image";
 import map from "../../../public/image/map.jpg";
+import mapBlur from "../../../public/image/map-blur.jpg";
+import LoadImage from "./loadImage";
+
 function Footer() {
   return (
     <footer className={style.footer}>
-      <Image
-        placeholder="data:image/map-blur.jpg"
-        src={map}
-        alt="map"
-        width={1000}
-        height={300}
-      />
+      <LoadImage src={map} alt="map" width={1000} height={300} />
     </footer>
   );
 }

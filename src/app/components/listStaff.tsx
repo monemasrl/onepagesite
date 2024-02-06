@@ -3,6 +3,7 @@ import style from "./components.module.scss";
 import Image from "next/image";
 import avatar from "../../../public/image/avatar.webp";
 import { ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
+import LoadImage from "./loadImage";
 
 function ListStaff({
   list,
@@ -19,7 +20,12 @@ function ListStaff({
               (staff: ItemsSitesStaff | undefined) =>
                 staff && (
                   <li key={staff.id} className={style.listStaff__item}>
-                    <Image src={avatar} alt="avatar" width={100} height={100} />
+                    <LoadImage
+                      src={avatar}
+                      alt={staff.firstname || "avatar"}
+                      width={100}
+                      height={100}
+                    />
                     <ul>
                       <li className={style.listStaff__item__name}>
                         {staff.firstname} {staff.lastname}
