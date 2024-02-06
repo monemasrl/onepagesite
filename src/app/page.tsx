@@ -27,22 +27,18 @@ async function Home() {
   const dataStaff: { data: ItemsSitesStaff[] | undefined } =
     await fetchStaffData(token);
 
-  if (dataAssets && dataStaff && dataSite) {
-    return (
-      <div className={styles.main}>
-        <ContextProvider>
-          <>
-            <MainContent
-              data={dataSite}
-              assets={dataAssets.data}
-              staff={dataStaff.data}
-            />
-          </>
-        </ContextProvider>
-      </div>
-    );
-  } else {
-    return <p>Caricamento...</p>;
-  }
+  return (
+    <div className={styles.main}>
+      <ContextProvider>
+        <>
+          <MainContent
+            data={dataSite}
+            assets={dataAssets.data}
+            staff={dataStaff.data}
+          />
+        </>
+      </ContextProvider>
+    </div>
+  );
 }
 export default Home;
