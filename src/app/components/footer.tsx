@@ -4,7 +4,13 @@ import map from "../../../public/image/map.jpg";
 function Footer() {
   return (
     <footer className={style.footer}>
-      <Image priority src={map} alt="map" width={1000} height={300} />
+      <Image
+        placeholder="data:image/map-blur.jpg"
+        src={map}
+        alt="map"
+        width={1000}
+        height={300}
+      />
     </footer>
   );
 }
