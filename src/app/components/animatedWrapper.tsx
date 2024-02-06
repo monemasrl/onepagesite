@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import { GoArrowRight } from "react-icons/go";
 import { type Dispatch, SetStateAction } from "react";
 import { Files } from "../generated2/models/Files";
+import LoadImage from "./loadImage";
 
 type Tdata = {
   logo?: Files;
@@ -61,12 +62,11 @@ function AnimatedWrapper({
             animate={["mid", "end"]}
           >
             {logo && (
-              <Image
+              <LoadImage
                 src={`https://cmdb.service.monema.dev/assets/${logo.filename_disk}`}
-                alt={logo.description || "imageLogo"}
+                alt={name || "logo"}
                 width={120}
                 height={120}
-                priority
               />
             )}
           </motion.div>
