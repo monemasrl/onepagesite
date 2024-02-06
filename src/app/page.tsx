@@ -19,9 +19,9 @@ async function Home() {
 
   const data = await fetchSiteData(token);
 
-  const dataSite =
-    (await data) &&
-    data.data.find((item: ItemsSites) => item.id === process.env.SITE_ID);
+  const dataSite = await data.data.find(
+    (item: ItemsSites) => item.id === process.env.SITE_ID_MONEMA
+  );
 
   return (
     <div className={styles.main}>
