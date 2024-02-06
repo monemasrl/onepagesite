@@ -34,7 +34,7 @@ function MainContent({
 }: {
   data: ItemsSites;
   assets: Files[];
-  staff: ItemsSitesStaff[];
+  staff: ItemsSitesStaff[] | undefined;
 }) {
   const [hideInitial, setHideInitial] = useState(true);
 

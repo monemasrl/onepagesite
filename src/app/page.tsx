@@ -27,7 +27,7 @@ async function Home() {
   const dataStaff: { data: ItemsSitesStaff[] | undefined } =
     await fetchStaffData(token);
 
-  if (data) {
+  if (data && dataAssets && dataStaff) {
     return (
       <div className={styles.main}>
         <ContextProvider>
@@ -41,6 +41,8 @@ async function Home() {
         </ContextProvider>
       </div>
     );
+  } else {
+    return <p>Caricamento...</p>;
   }
 }
 export default Home;
