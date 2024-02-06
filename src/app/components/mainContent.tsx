@@ -84,6 +84,7 @@ function MainContent({
                       alt={featured_image?.description || "immagine principale"}
                       width={500}
                       height={500}
+                      priority
                     />
                   )}
                   <div className={styles.content__intro__data}>

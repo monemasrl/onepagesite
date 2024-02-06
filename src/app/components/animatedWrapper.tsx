@@ -66,6 +66,7 @@ function AnimatedWrapper({
                 alt={logo.description || "imageLogo"}
                 width={120}
                 height={120}
+                priority
               />
             )}
           </motion.div>
