@@ -22,10 +22,6 @@ type Taddresses = {
   street: string;
   zip: string;
 };
-type Tsocial = {
-  address: string;
-  type: string;
-};
 
 function MainContent({
   data,
@@ -75,7 +71,11 @@ function MainContent({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <Header logo={logo} name={data.company_name} />
+              <Header
+                logo={logo}
+                name={data.company_name}
+                social={data.social}
+              />
               <main className={styles.content}>
                 <section className={styles.content__intro}>
                   <div className={styles.content__intro__wrapperImage}>
@@ -135,31 +135,6 @@ function MainContent({
                           </span>
                           {data.addresses[0].email && data.addresses[0].email}
                         </p>
-                      </li>
-                    )}
-                    {data.social && (
-                      <li>
-                        <h4>Seguici</h4>
-                        <ul className={styles.content__dati__social}>
-                          {data.social.map((social: Tsocial, index: number) => (
-                            <li key={index}>
-                              <span>
-                                {social.type === "facebook" ? (
-                                  <LuFacebook />
-                                ) : (
-                                  <LuInstagram />
-                                )}
-                              </span>
-                              <a
-                                href={social.address}
-                                target="_blank"
-                                rel="noreferrer noopener"
-                              >
-                                {social.type}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
                       </li>
                     )}
                   </ul>
