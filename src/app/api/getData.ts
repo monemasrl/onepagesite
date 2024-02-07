@@ -72,7 +72,7 @@ async function fetchStaffData(token: AuthenticationService) {
 }
 
 async function fetchMapData(indirizzo: string) {
-    const data = await fetch(`http://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`)
+    const data = await fetch(`https://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`)
         .then((response) => response.json())
         .then((data) => data)
         .catch((error) => error);
