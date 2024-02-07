@@ -71,4 +71,13 @@ async function fetchStaffData(token: AuthenticationService) {
 
 }
 
-export { getToken, fetchSiteData, fetchAssetsData, fetchStaffData }
+async function fetchMapData(indirizzo: string) {
+    const data = await fetch(`http://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`)
+        .then((response) => response.json())
+        .then((data) => data)
+        .catch((error) => error);
+
+    return data;
+}
+
+export { getToken, fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData }

@@ -44,7 +44,7 @@ function Header({ logo, name, social }: THeader) {
   return (
     <header className={style.header}>
       {(logo || name) && (
-        <div className={style.name}>
+        <div className={style.header__name}>
           {logo && (
             <LoadImage
               src={`https://cmdb.service.monema.dev/assets/${logo.filename_disk}`}

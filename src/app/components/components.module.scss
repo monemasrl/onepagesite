@@ -22,6 +22,9 @@
       display: flex;
       justify-content: flex-end;
       gap: 1rem;
+      li {
+        cursor: pointer;
+      }
     }
     .social {
       display: flex;
@@ -32,13 +35,14 @@
   }
 }
 .footer {
-  margin: 3rem 0 0 0;
+  margin: 2rem 0 0 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   overflow: hidden;
-  max-height: 300px;
+  height: 300px;
+  position: relative;
   img {
     object-fit: cover;
     height: 100%;
@@ -52,7 +56,7 @@
   max-width: 350px;
   height: 100%;
   background-color: rgb(255, 255, 255);
-  z-index: 100;
+  z-index: 400;
   overflow-y: auto;
   padding: 2rem;
   box-shadow: 0px 0px 11px #d0d0d0;

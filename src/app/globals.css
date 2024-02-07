@@ -23,3 +23,12 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.leaflet-container.leaflet-touch.leaflet-retina.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+  width: 100%;
+  height: 300px;
+}
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 400 !important;
+}

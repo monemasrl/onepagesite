@@ -30,7 +30,7 @@
   display: block;
   background-color: white;
   z-index: 1;
-  padding-top: 3rem;
+  padding-top: 2rem;
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
@@ -91,16 +91,25 @@
         }
       }
     }
+    .sedi {
+      li {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 0.5rem;
+      }
+    }
     > ul {
       display: grid;
-      grid-template-columns: repeat(4, auto);
+      grid-template-columns: repeat(3, auto);
       column-gap: 2rem;
       padding: 0 1rem;
       @media screen and (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
         row-gap: 2rem;
       }
-      li {
+      > li {
+        margin-left: 0.5rem;
         h4 {
           font-weight: 600;
           font-size: 1.5rem;

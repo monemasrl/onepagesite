@@ -14,6 +14,7 @@ import LoadImage from "./loadImage";
 
 type Taddresses = {
   city: string;
+  Numero: string;
   country: string;
   email: string;
   name: string;
@@ -22,6 +23,15 @@ type Taddresses = {
   street: string;
   zip: string;
 };
+
+function createAddress(street: string, city: string, numero: string): string {
+  const streetsplit = street.split(" ");
+  const address = streetsplit.join("+");
+  const citySplit = city.split(" ");
+  const cityAddress = citySplit.join("+");
+  const addressString = `${address}+${numero},+${cityAddress}`;
+  return addressString;
+}
 
 function MainContent({
   data,
@@ -33,6 +43,17 @@ function MainContent({
   staff?: ItemsSitesStaff[];
 }) {
   const [hideInitial, setHideInitial] = useState(true);
+  const [currentAddress, setCurrentAddress] = useState<string>(() => {
+    if (data.addresses) {
+      return createAddress(
+        data.addresses[0].street,
+        data.addresses[0].city,
+        data.addresses[0].Numero
+      );
+    } else {
+      return "";
+    }
+  });
 
   function staffData(): (ItemsSitesStaff | undefined)[] | undefined {
     return data.staff?.map((item) =>
@@ -41,7 +62,7 @@ function MainContent({
   }
 
   if (data) {
-    console.log(data);
+    console.log(currentAddress, "currentAddress");
     const logo: Files | undefined = assets?.find(
       (item) => item.id === data.logo
     );
@@ -100,13 +121,30 @@ function MainContent({
                     <li>
                       <h4>Sedi</h4>
                       {data.addresses && (
-                        <ul>
+                        <ul className={styles.sedi}>
                           {data.addresses.map(
                             (address: Taddresses, index: number) => (
-                              <li key={index}>
-                                <p>{address.street}</p>
-                                <p>{address.city}</p>
-                                <p>{address.zip}</p>
+                              <li
+                                key={index}
+                                onClick={() =>
+                                  setCurrentAddress(
+                                    createAddress(
+                                      address.street,
+                                      address.city,
+                                      address.Numero
+                                    )
+                                  )
+                                }
+                              >
+                                <ul>
+                                  <li>
+                                    <sup>{address.name}</sup>
+                                    <span>
+                                      {address.street}&nbsp;{address.Numero},{" "}
+                                      {address.city}
+                                    </span>
+                                  </li>
+                                </ul>
                               </li>
                             )
                           )}
@@ -140,7 +178,7 @@ function MainContent({
                   </ul>
                 </section>
               </main>
-              <Footer />
+              <Footer address={currentAddress} />
               <Drawer staff={staffData()} />
             </motion.div>
           )}
