@@ -12,6 +12,8 @@ import { Files } from "./generated2/models/Files";
 import { ItemsSites } from "./generated2/models/ItemsSites";
 import { ItemsSitesStaff } from "./generated2/models/ItemsSitesStaff";
 
+export const dynamic = "force-dynamic";
+
 async function Home() {
   const token = await getToken();
   const dataAssets: { data: Files[] } = await fetchAssetsData(token);
