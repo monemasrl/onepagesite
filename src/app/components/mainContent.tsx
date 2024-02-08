@@ -55,6 +55,8 @@ function MainContent({
     }
   });
 
+  const [activeAddressList, setActiveAddressList] = useState<string>("");
+
   function staffData(): (ItemsSitesStaff | undefined)[] | undefined {
     return data.staff?.map((item) =>
       staff?.find((staffItem) => staffItem.id === item)
@@ -62,7 +64,7 @@ function MainContent({
   }
 
   if (data) {
-    console.log(currentAddress, "currentAddress");
+    console.log(data, "currentAddress");
     const logo: Files | undefined = assets?.find(
       (item) => item.id === data.logo
     );
@@ -126,15 +128,20 @@ function MainContent({
                             (address: Taddresses, index: number) => (
                               <li
                                 key={index}
-                                onClick={() =>
+                                className={`${
+                                  address.street === activeAddressList &&
+                                  styles.activeListItem
+                                } `}
+                                onClick={() => {
+                                  setActiveAddressList(address.street);
                                   setCurrentAddress(
                                     createAddress(
                                       address.street,
                                       address.city,
                                       address.Numero
                                     )
-                                  )
-                                }
+                                  );
+                                }}
                               >
                                 <ul>
                                   <li>

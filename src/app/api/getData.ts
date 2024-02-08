@@ -80,4 +80,20 @@ async function fetchMapData(indirizzo: string) {
     return data;
 }
 
-export { getToken, fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData }
+async function fetchStaffDataByID(token: AuthenticationService, id) {
+    if (token && process.env.URL_STAFF) {
+        const data: Response | undefined = await fetch(process.env.URL_STAFF)
+        const dataJson: any = await data.json()
+        const staff = dataJson.data.find((item: any) => item.id === id)
+        if (dataJson.error) {
+            console.log(dataJson.error)
+        } {
+            return staff
+        }
+    } else {
+        console.log('No token')
+    }
+
+}
+
+export { getToken, fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData, fetchStaffDataByID }

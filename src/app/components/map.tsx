@@ -11,7 +11,6 @@ function SetViewOnClick({ coords }: { coords: LatLngExpression }) {
   return null;
 }
 function Map({ position, zoom }: { position: LatLngExpression; zoom: number }) {
-  console.log(position, zoom, "position, zoom");
   return (
     <MapContainer center={position} zoom={zoom} scrollWheelZoom={false}>
       <TileLayer

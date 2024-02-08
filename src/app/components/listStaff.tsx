@@ -4,7 +4,7 @@ import Image from "next/image";
 import avatar from "../../../public/image/avatar.webp";
 import { ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
 import LoadImage from "./loadImage";
-
+import Link from "next/link";
 function ListStaff({
   list,
 }: {
@@ -26,13 +26,21 @@ function ListStaff({
                       width={100}
                       height={100}
                     />
-                    <ul>
-                      <li className={style.listStaff__item__name}>
-                        {staff.firstname} {staff.lastname}
-                      </li>
-                      <li>{staff.department}</li>
-                      <li>{staff.email}</li>
-                    </ul>
+                    <Link
+                      href={{
+                        pathname: `staff/${staff.firstname}`,
+                        query: { id: staff.id },
+                      }}
+                    >
+                      {" "}
+                      <ul>
+                        <li className={style.listStaff__item__name}>
+                          {staff.firstname} {staff.lastname}
+                        </li>
+                        <li>{staff.department}</li>
+                        <li>{staff.email}</li>
+                      </ul>
+                    </Link>
                   </li>
                 )
             )}

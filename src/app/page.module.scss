@@ -93,10 +93,22 @@
     }
     .sedi {
       li {
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 2px;
         margin-bottom: 0.5rem;
+        cursor: pointer;
+        &.activeListItem {
+          &::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 75%;
+            background-color: #000;
+            left: -6px;
+          }
+        }
       }
     }
     > ul {
