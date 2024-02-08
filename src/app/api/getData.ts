@@ -80,7 +80,7 @@ async function fetchMapData(indirizzo: string) {
     return data;
 }
 
-async function fetchStaffDataByID(token: AuthenticationService, id) {
+async function fetchStaffDataByID(token: AuthenticationService, id: string) {
     if (token && process.env.URL_STAFF) {
         const data: Response | undefined = await fetch(process.env.URL_STAFF)
         const dataJson: any = await data.json()
