@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import { AuthenticationService } from "../generated2/services/AuthenticationService";
 
 type TfakeData = {
     name: string;

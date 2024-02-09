@@ -1,35 +1,11 @@
+"use server"
+
 import { AuthenticationService } from "../generated2/services/AuthenticationService";
 
-async function getToken() {
 
-    if (process.env.URL_LOGIN) {
-        console.log(process.env.URL_LOGIN);
-        const response = await fetch(process.env.URL_LOGIN,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "email": "dedomini@monema.it",
-                    "password": "Dedomini2024!",
-                    "mode": "json",
-                    "otp": "string"
-                })
-            }
-        );
-        const data: any = await response.json();
-        if (data.error) {
-            console.log(data.error, 'token error');
-        } else {
+async function fetchSiteData() {
 
-            return data;
-        }
-    }
-}
-
-async function fetchSiteData(token: AuthenticationService) {
-    if (token && process.env.URL_PAGE_DATA) {
+    if (process.env.URL_PAGE_DATA) {
         const data: Response | undefined = await fetch(process.env.URL_PAGE_DATA)
         const dataJson: any | undefined = await data.json()
         if (dataJson.error) {
@@ -38,12 +14,12 @@ async function fetchSiteData(token: AuthenticationService) {
             return dataJson
         }
     } else {
-        console.log('No token')
+        console.log('Wrong endpoint ')
     }
 }
 
-async function fetchAssetsData(token: AuthenticationService) {
-    if (token && process.env.URL_ASSET) {
+async function fetchAssetsData() {
+    if (process.env.URL_ASSET) {
         const data: Response | undefined = await fetch(process.env.URL_ASSET)
         const dataJson: any = await data.json()
         if (dataJson.error) {
@@ -52,12 +28,12 @@ async function fetchAssetsData(token: AuthenticationService) {
             return dataJson
         }
     } else {
-        console.log('No token')
+        console.log('Wrong endpoint ')
     }
 }
 
-async function fetchStaffData(token: AuthenticationService) {
-    if (token && process.env.URL_STAFF) {
+async function fetchStaffData() {
+    if (process.env.URL_STAFF) {
         const data: Response | undefined = await fetch(process.env.URL_STAFF)
         const dataJson: any = await data.json()
         if (dataJson.error) {
@@ -66,7 +42,7 @@ async function fetchStaffData(token: AuthenticationService) {
             return dataJson
         }
     } else {
-        console.log('No token')
+        console.log('Wrong endpoint ')
     }
 
 }
@@ -80,20 +56,21 @@ async function fetchMapData(indirizzo: string) {
     return data;
 }
 
-async function fetchStaffDataByID(token: AuthenticationService, id: string) {
-    if (token && process.env.URL_STAFF) {
-        const data: Response | undefined = await fetch(process.env.URL_STAFF)
+async function fetchStaffDataByID(id: string) {
+
+    if (process.env.URL_STAFF) {
+        const data: Response | undefined = await fetch(process.env.URL_STAFF + "/" + id)
         const dataJson: any = await data.json()
-        const staff = dataJson.data.find((item: any) => item.id === id)
+
         if (dataJson.error) {
             console.log(dataJson.error)
         } {
-            return staff
+            return dataJson
         }
     } else {
-        console.log('No token')
+        console.log('Wrong endpoint ')
     }
 
 }
 
-export { getToken, fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData, fetchStaffDataByID }
+export { fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData, fetchStaffDataByID }

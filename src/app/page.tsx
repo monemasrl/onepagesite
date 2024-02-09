@@ -1,25 +1,17 @@
 import styles from "./page.module.scss";
 import { ContextProvider } from "./context/context";
 import MainContent from "./components/mainContent";
-import {
-  getToken,
-  fetchSiteData,
-  fetchAssetsData,
-  fetchStaffData,
-} from "./api/getData";
+import { fetchSiteData, fetchAssetsData, fetchStaffData } from "./api/getData";
 
 import { Files } from "./generated2/models/Files";
 import { ItemsSites } from "./generated2/models/ItemsSites";
 import { ItemsSitesStaff } from "./generated2/models/ItemsSitesStaff";
 
-export const dynamic = "force-dynamic";
-
 async function Home() {
-  const token = await getToken();
-  const dataAssets: { data: Files[] } = await fetchAssetsData(token);
-  const dataStaff: { data: ItemsSitesStaff[] } = await fetchStaffData(token);
+  const dataAssets: { data: Files[] } = await fetchAssetsData();
+  const dataStaff: { data: ItemsSitesStaff[] } = await fetchStaffData();
 
-  const data = await fetchSiteData(token);
+  const data = await fetchSiteData();
 
   const dataSite = await data.data.find(
     (item: ItemsSites) => item.id === process.env.SITE_ID_MONEMA

@@ -1,16 +1,17 @@
 "use client";
-import styles from "../page.module.scss";
-import Header from "./header";
-import Footer from "./footer";
-import Drawer from "./drawer";
-import { LuPhoneCall, LuFacebook, LuInstagram, LuMail } from "react-icons/lu";
-import AnimatedWrapper from "./animatedWrapper";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { type Files } from "../generated2/models/Files";
 import { type ItemsSites } from "../generated2/models/ItemsSites";
 import { type ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
+import { type AuthenticationService } from "../generated2/services/AuthenticationService";
+import Header from "./header";
+import Footer from "./footer";
+import Drawer from "./drawer";
 import LoadImage from "./loadImage";
+import { AnimatePresence, motion } from "framer-motion";
+import { LuPhoneCall, LuFacebook, LuInstagram, LuMail } from "react-icons/lu";
+import AnimatedWrapper from "./animatedWrapper";
+import { useState } from "react";
+import styles from "../page.module.scss";
 
 type Taddresses = {
   city: string;
