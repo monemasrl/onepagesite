@@ -1,18 +1,19 @@
 "use client";
 import styles from "./components.module.scss";
-import { ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
 import LoadImage from "./loadImage";
-import { StaticImageData } from "next/image";
 import { LuPhone, LuMail } from "react-icons/lu";
 import { GoArrowLeft } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { type ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
+import { type StaticImageData } from "next/image";
 
 type TitemSitesStaff = ItemsSitesStaff & { image: string | StaticImageData };
 
 function StaffData({ data }: { data: TitemSitesStaff }) {
   const { firstname, lastname, department, email, phone, image } = data;
   const router = useRouter();
+
   return (
     <motion.div
       initial={{
@@ -26,7 +27,9 @@ function StaffData({ data }: { data: TitemSitesStaff }) {
       className={styles.staffData}
     >
       <div
-        onClick={() => router.push("/")}
+        onClick={() => {
+          router.push("/");
+        }}
         className={styles.staffData__backHome}
       >
         <GoArrowLeft />

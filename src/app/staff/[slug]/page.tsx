@@ -9,7 +9,7 @@ import StaffData from "../../components/staffData";
 import { ItemsSitesStaff } from "../../generated2/models/ItemsSitesStaff";
 import { notFound } from "next/navigation";
 import { type StaticImageData } from "next/image";
-
+import { ContextProvider } from "../../context/context";
 export async function generateStaticParams() {
   if (process.env.URL_STAFF) {
     const staff: any = await fetch(process.env.URL_STAFF).then(
@@ -43,9 +43,11 @@ async function StaffPage({ params }: Tprops) {
   }
 
   return (
-    <div className={styles.wrapperPageStaff}>
-      <StaffData data={data} />
-    </div>
+    <ContextProvider>
+      <div className={styles.wrapperPageStaff}>
+        <StaffData data={data} />
+      </div>
+    </ContextProvider>
   );
 }
 

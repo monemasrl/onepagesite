@@ -22,7 +22,7 @@ function Footer({ address }: { address: string }) {
         setError(data.error);
       }
     }
-    if (address.length) {
+    if (address && address.length) {
       fetchData(address);
     }
   }, [address]);

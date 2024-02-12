@@ -40,6 +40,8 @@ type Tstate = {
     setDrawer: React.Dispatch<React.SetStateAction<boolean>>;
     dataDrawer: string | null;
     setDataDrawer: React.Dispatch<React.SetStateAction<string | null>>;
+    splash: boolean;
+    setSplash: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type TpageData = {
