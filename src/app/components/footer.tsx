@@ -22,7 +22,7 @@ function Footer({ address }: { address: string }) {
       }
     }
     if (address.length) {
-      fetchData();
+      //fetchData();
     }
   }, [address]);
 
