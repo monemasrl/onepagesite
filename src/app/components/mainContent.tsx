@@ -29,7 +29,7 @@ function createAddress(street: string, city: string, numero: string): string {
   const address = streetsplit.join("+");
   const citySplit = city.split(" ");
   const cityAddress = citySplit.join("+");
-  const addressString = `${address}+${numero},+${cityAddress}`;
+  const addressString = `${address}+${numero}+${cityAddress}`;
   return addressString;
 }
 
