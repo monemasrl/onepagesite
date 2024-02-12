@@ -53,7 +53,7 @@ async function fetchMapData(indirizzo: string) {
     const data = await fetch(`https://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`)
         .then((response) => response.json())
         .then((data) => data)
-        .catch((error) => error + 'error');
+        .catch(() => 'error fetching data map');
 
     return data;
 }
