@@ -14,7 +14,7 @@ function Footer({ address }: { address: string }) {
   useEffect(() => {
     async function fetchData() {
       const data: any = await fetchMapData(address);
-      console.log(data);
+      console.log(data, address, "dati mappa");
       if (data) {
         setMapdata(data);
       } else {
