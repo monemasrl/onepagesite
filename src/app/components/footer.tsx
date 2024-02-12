@@ -9,20 +9,21 @@ const Mappa = dynamic(() => import("./map"));
 
 function Footer({ address }: { address: string }) {
   const [mapdata, setMapdata] = useState<any | undefined>([]);
-  const [error, setError] = useState("robe strane");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData(address: string) {
       const data: any = await fetchMapData(address);
-      console.log(data, address, "dati mappa");
+
       if (data) {
+        console.log(data, "dati mappa");
         setMapdata(data);
       } else {
         setError(data.error);
       }
     }
     if (address.length) {
-      //fetchData();
+      fetchData(address);
     }
   }, [address]);
 
