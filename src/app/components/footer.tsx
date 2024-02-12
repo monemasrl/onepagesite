@@ -8,15 +8,13 @@ import { fetchMapData } from "../api/getData";
 const Mappa = dynamic(() => import("./map"));
 
 function Footer({ address }: { address: string }) {
-  const [mapdata, setMapdata] = useState<any | undefined>([
-    { lat: 45.8827249, lon: 9.7489979 },
-  ]);
+  const [mapdata, setMapdata] = useState<any | undefined>([]);
   const [error, setError] = useState("robe strane");
 
   useEffect(() => {
     async function fetchData() {
       const data: any = await fetchMapData(address);
-
+      console.log(data);
       if (data) {
         setMapdata(data);
       } else {
