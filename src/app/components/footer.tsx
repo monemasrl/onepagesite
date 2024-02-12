@@ -28,10 +28,7 @@ function Footer({ address }: { address: string }) {
   return (
     <footer className={style.footer}>
       {mapdata.length > 0 ? (
-        <Mappa
-          position={[parseFloat(mapdata[0].lat), parseFloat(mapdata[0].lon)]}
-          zoom={13}
-        />
+        <Mappa position={[56.56, 34.34]} zoom={13} />
       ) : (
         <div
           style={{ height: "100%", textAlign: "center", paddingTop: "2rem" }}
