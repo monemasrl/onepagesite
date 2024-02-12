@@ -7,7 +7,7 @@ import { fetchMapData } from "../api/getData";
 
 const Mappa = dynamic(() => import("./map"));
 
-function Footer({ address }: { address: string }) {
+function Footer({ address }: { address: string | null }) {
   const [mapdata, setMapdata] = useState<any | undefined>([]);
   const [error, setError] = useState("");
 
