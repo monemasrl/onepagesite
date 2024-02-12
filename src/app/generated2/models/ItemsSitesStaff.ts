@@ -20,5 +20,6 @@ export type ItemsSitesStaff = {
     phone?: string | null;
     image?: (string | Files) | null;
     site_id?: (string | ItemsSites) | null;
+    slug?: string | null;
 };
 

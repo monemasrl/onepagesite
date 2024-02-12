@@ -2,13 +2,12 @@
 import { type Files } from "../generated2/models/Files";
 import { type ItemsSites } from "../generated2/models/ItemsSites";
 import { type ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
-import { type AuthenticationService } from "../generated2/services/AuthenticationService";
 import Header from "./header";
 import Footer from "./footer";
 import Drawer from "./drawer";
 import LoadImage from "./loadImage";
 import { AnimatePresence, motion } from "framer-motion";
-import { LuPhoneCall, LuFacebook, LuInstagram, LuMail } from "react-icons/lu";
+import { LuPhoneCall, LuMail } from "react-icons/lu";
 import AnimatedWrapper from "./animatedWrapper";
 import { useState } from "react";
 import styles from "../page.module.scss";
@@ -56,7 +55,7 @@ function MainContent({
     }
   });
 
-  const [activeAddressList, setActiveAddressList] = useState<string>("");
+  const [activeAddressList, setActiveAddressList] = useState<number>(0);
 
   function staffData(): (ItemsSitesStaff | undefined)[] | undefined {
     return data.staff?.map((item) =>
@@ -65,7 +64,6 @@ function MainContent({
   }
 
   if (data) {
-    console.log(data, "currentAddress");
     const logo: Files | undefined = assets?.find(
       (item) => item.id === data.logo
     );
@@ -130,11 +128,11 @@ function MainContent({
                               <li
                                 key={index}
                                 className={`${
-                                  address.street === activeAddressList &&
+                                  index === activeAddressList &&
                                   styles.activeListItem
                                 } `}
                                 onClick={() => {
-                                  setActiveAddressList(address.street);
+                                  setActiveAddressList(index);
                                   setCurrentAddress(
                                     createAddress(
                                       address.street,

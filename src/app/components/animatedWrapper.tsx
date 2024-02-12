@@ -26,6 +26,7 @@ function AnimatedWrapper({
   hideInitial,
   setHideInitial,
 }: Tdata) {
+  console.log(logo, "logo");
   return (
     <AnimatePresence>
       {hideInitial && (
@@ -81,7 +82,7 @@ function AnimatedWrapper({
             </motion.div>
             {(sede || citta) && (
               <div className={styles.dataStart__sede}>
-                {sede}-{citta}
+                {sede}, {citta}
               </div>
             )}
             {contatti && (

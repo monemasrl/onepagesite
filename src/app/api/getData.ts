@@ -1,6 +1,8 @@
 "use server"
 
-import { AuthenticationService } from "../generated2/services/AuthenticationService";
+import { StaticImageData } from "next/image";
+import { type AuthenticationService } from "../generated2/services/AuthenticationService";
+import { Files } from "../generated2/models/Files";
 
 
 async function fetchSiteData() {
@@ -19,8 +21,8 @@ async function fetchSiteData() {
 }
 
 async function fetchAssetsData() {
-    if (process.env.URL_ASSET) {
-        const data: Response | undefined = await fetch(process.env.URL_ASSET)
+    if (process.env.URL_ASSETS) {
+        const data: Response | undefined = await fetch(process.env.URL_ASSETS)
         const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
@@ -34,7 +36,7 @@ async function fetchAssetsData() {
 
 async function fetchStaffData() {
     if (process.env.URL_STAFF) {
-        const data: Response | undefined = await fetch(process.env.URL_STAFF)
+        const data: Response | undefined = await fetch(process.env.URL_STAFF, {})
         const dataJson: any = await data.json()
         if (dataJson.error) {
             console.log(dataJson.error)
@@ -73,4 +75,6 @@ async function fetchStaffDataByID(id: string) {
 
 }
 
-export { fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData, fetchStaffDataByID }
+
+
+export { fetchSiteData, fetchAssetsData, fetchStaffData, fetchMapData, fetchStaffDataByID, }

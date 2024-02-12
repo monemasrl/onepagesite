@@ -1,17 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, memo } from "react";
 import Image, { StaticImageData } from "next/image";
 import ContentLoader from "react-content-loader";
-import styles from "./components.module.scss";
 
-function LoadImage({
+const LoadImage = memo(function LoadImage({
   src,
   alt,
   width,
   height,
 }: {
   src: string | StaticImageData;
-  alt: string;
+  alt: string | null | undefined;
   width: number;
   height: number;
 }) {
@@ -27,7 +26,7 @@ function LoadImage({
     >
       <Image
         src={src}
-        alt={alt}
+        alt={alt || "immagine di profilo"}
         width={width}
         height={height}
         style={{ visibility: visibility }}
@@ -57,6 +56,6 @@ function LoadImage({
       </span>
     </div>
   );
-}
+});
 
 export default LoadImage;

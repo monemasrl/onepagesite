@@ -25,16 +25,21 @@ function Footer({ address }: { address: string }) {
     }
   }, [address]);
 
-  console.log(mapdata, "mapdata");
-  return mapdata.length > 0 ? (
+  return (
     <footer className={style.footer}>
-      <Mappa
-        position={[parseFloat(mapdata[0].lat), parseFloat(mapdata[0].lon)]}
-        zoom={13}
-      />
+      {mapdata.length > 0 ? (
+        <Mappa
+          position={[parseFloat(mapdata[0].lat), parseFloat(mapdata[0].lon)]}
+          zoom={13}
+        />
+      ) : (
+        <div
+          style={{ height: "100%", textAlign: "center", paddingTop: "2rem" }}
+        >
+          {error ? "Errore nel caricamento dati mappa" : "Loading..."}
+        </div>
+      )}
     </footer>
-  ) : (
-    <div>{error ? "Errore nel caricamento dati mappa" : "Loading..."}</div>
   );
 }
 export default Footer;

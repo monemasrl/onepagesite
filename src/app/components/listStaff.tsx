@@ -28,8 +28,7 @@ function ListStaff({
                     />
                     <Link
                       href={{
-                        pathname: `staff/${staff.firstname}`,
-                        query: { id: staff.id },
+                        pathname: `staff/${staff.slug}`,
                       }}
                     >
                       {" "}
