@@ -9,7 +9,7 @@ const Mappa = dynamic(() => import("./map"));
 
 function Footer({ address }: { address: string }) {
   const [mapdata, setMapdata] = useState<any | undefined>([
-    45.8827249, 9.7489979,
+    { lat: 45.8827249, lon: 9.7489979 },
   ]);
   const [error, setError] = useState("robe strane");
 
