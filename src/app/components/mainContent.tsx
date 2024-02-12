@@ -58,7 +58,7 @@ function MainContent({
 
   const [activeAddressList, setActiveAddressList] = useState<
     number | undefined
-  >();
+  >(0);
   const context = useContext(Context);
   function staffData(): (ItemsSitesStaff | undefined)[] | undefined {
     return data.staff?.map((item) =>
