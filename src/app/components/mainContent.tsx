@@ -44,7 +44,17 @@ function MainContent({
   staff?: ItemsSitesStaff[];
 }) {
   const [hideInitial, setHideInitial] = useState(true);
-  const [currentAddress, setCurrentAddress] = useState<string | null>(null);
+  const [currentAddress, setCurrentAddress] = useState<string | null>(() => {
+    if (data.addresses) {
+      return createAddress(
+        data.addresses[0].street,
+        data.addresses[0].city,
+        data.addresses[0].Numero
+      );
+    } else {
+      return "";
+    }
+  });
 
   const [activeAddressList, setActiveAddressList] = useState<
     number | undefined
