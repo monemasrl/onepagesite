@@ -55,7 +55,9 @@ function MainContent({
     }
   });
 
-  const [activeAddressList, setActiveAddressList] = useState<number>(0);
+  const [activeAddressList, setActiveAddressList] = useState<
+    number | undefined
+  >();
 
   function staffData(): (ItemsSitesStaff | undefined)[] | undefined {
     return data.staff?.map((item) =>
