@@ -51,12 +51,12 @@ async function fetchStaffData() {
 
 async function fetchMapData(indirizzo: string) {
     console.log('fetchMapData' + indirizzo)
-    const data = await fetch(`https://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`)
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((errore) => console.log(errore + 'error fetching data map'));
-
-    return data;
+    /*     const data = await fetch(`https://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`)
+            .then((response) => response.json())
+            .then((data) => data)
+            .catch((errore) => console.log(errore + 'error fetching data map'));
+     */
+    return 'data';
 }
 
 async function fetchStaffDataByID(id: string) {
