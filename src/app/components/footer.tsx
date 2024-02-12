@@ -9,7 +9,7 @@ const Mappa = dynamic(() => import("./map"));
 
 function Footer({ address }: { address: string }) {
   const [mapdata, setMapdata] = useState<any | undefined>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("robe strane");
 
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +27,7 @@ function Footer({ address }: { address: string }) {
 
   return (
     <footer className={style.footer}>
-      {/*  {mapdata.length > 0 ? (
+      {mapdata.length > 0 ? (
         <Mappa
           position={[parseFloat(mapdata[0].lat), parseFloat(mapdata[0].lon)]}
           zoom={13}
@@ -38,7 +38,7 @@ function Footer({ address }: { address: string }) {
         >
           {error ? "Errore nel caricamento dati mappa" : "Loading..."}
         </div>
-      )} */}
+      )}
     </footer>
   );
 }
