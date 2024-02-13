@@ -10,6 +10,7 @@ import { ItemsSitesStaff } from "../../generated2/models/ItemsSitesStaff";
 import { notFound } from "next/navigation";
 import { type StaticImageData } from "next/image";
 import { ContextProvider } from "../../context/context";
+
 export async function generateStaticParams() {
   if (process.env.URL_STAFF) {
     const staff: any = await fetch(process.env.URL_STAFF).then(
@@ -31,7 +32,23 @@ async function getDataStaff(slug: string) {
       (item: TitemSitesStaff) => item.slug === slug
     );
 
-    return data;
+    return {
+      data: data,
+      next: {
+        slug: staff.data[staff.data.indexOf(data) + 1]?.slug,
+        name:
+          staff.data[staff.data.indexOf(data) + 1]?.firstname +
+          " " +
+          staff.data[staff.data.indexOf(data) + 1]?.lastname,
+      },
+      prev: {
+        slug: staff.data[staff.data.indexOf(data) - 1]?.slug,
+        name:
+          staff.data[staff.data.indexOf(data) - 1]?.firstname +
+          " " +
+          staff.data[staff.data.indexOf(data) - 1]?.lastname,
+      },
+    };
   }
 }
 
@@ -45,7 +62,7 @@ async function StaffPage({ params }: Tprops) {
   return (
     <ContextProvider>
       <div className={styles.wrapperPageStaff}>
-        <StaffData data={data} />
+        {data && <StaffData data={data} />}
       </div>
     </ContextProvider>
   );

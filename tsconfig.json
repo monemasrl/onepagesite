@@ -6,7 +6,7 @@
     "module": "CommonJS",
     "strict": true,
     "useUnknownInCatchVariables": false,
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "esModuleInterop": true,
     "allowJs": true,
     "skipLibCheck": true,

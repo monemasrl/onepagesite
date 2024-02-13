@@ -2,18 +2,27 @@
 import styles from "./components.module.scss";
 import LoadImage from "./loadImage";
 import { LuPhone, LuMail } from "react-icons/lu";
-import { GoArrowLeft } from "react-icons/go";
+import { GoArrowLeft, GoArrowRight, GoHome } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { type ItemsSitesStaff } from "../generated2/models/ItemsSitesStaff";
 import { type StaticImageData } from "next/image";
-
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 type TitemSitesStaff = ItemsSitesStaff & { image: string | StaticImageData };
 
-function StaffData({ data }: { data: TitemSitesStaff }) {
-  const { firstname, lastname, department, email, phone, image } = data;
+function StaffData({
+  data,
+}: {
+  data: {
+    data: TitemSitesStaff;
+    next: { slug: string; name: string } | undefined;
+    prev: { slug: string; name: string } | undefined;
+  };
+}) {
+  const { firstname, lastname, department, email, phone, image } = data.data;
   const router = useRouter();
-
+  const [nav, setNav] = useState(false);
   return (
     <motion.div
       initial={{
@@ -25,6 +34,8 @@ function StaffData({ data }: { data: TitemSitesStaff }) {
         scale: 1,
       }}
       className={styles.staffData}
+      onMouseOver={() => setNav(true)}
+      onMouseOut={() => setNav(false)}
     >
       <div
         onClick={() => {
@@ -32,7 +43,7 @@ function StaffData({ data }: { data: TitemSitesStaff }) {
         }}
         className={styles.staffData__backHome}
       >
-        <GoArrowLeft />
+        <GoHome />
       </div>
       <div className={styles.staffData__data}>
         <motion.h3
@@ -79,13 +90,13 @@ function StaffData({ data }: { data: TitemSitesStaff }) {
           {email && (
             <li>
               {" "}
-              <LuMail /> <span>{email}</span>
+              <span>{email}</span> <LuMail />
             </li>
           )}
           {phone && (
             <li>
+              <span>{phone}</span>
               <LuPhone />
-              {phone}
             </li>
           )}
         </motion.ul>
@@ -101,6 +112,64 @@ function StaffData({ data }: { data: TitemSitesStaff }) {
           />
         )}
       </div>
+      <AnimatePresence>
+        {nav && (
+          <motion.nav
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+          >
+            <motion.div
+              initial={{
+                y: 30,
+              }}
+              animate={{
+                y: 0,
+              }}
+              exit={{
+                y: 30,
+              }}
+              className={`${styles.itemStaff} ${styles.prev}`}
+            >
+              {data.prev?.slug && (
+                <button
+                  onClick={() => data.prev && router.push(data.prev.slug)}
+                >
+                  <GoArrowLeft />{" "}
+                  <span>{data.prev.name != undefined && data.prev.name}</span>
+                </button>
+              )}{" "}
+            </motion.div>
+            <motion.div
+              initial={{
+                y: 30,
+              }}
+              animate={{
+                y: 0,
+              }}
+              exit={{
+                y: 30,
+              }}
+              className={`${styles.itemStaff} ${styles.next}`}
+            >
+              {data.next?.slug && (
+                <button
+                  onClick={() => data.next && router.push(data.next.slug)}
+                >
+                  <span>{data.next.name != undefined && data.next.name}</span>{" "}
+                  <GoArrowRight />
+                </button>
+              )}
+            </motion.div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

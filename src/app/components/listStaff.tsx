@@ -20,12 +20,16 @@ function ListStaff({
               (staff: ItemsSitesStaff | undefined) =>
                 staff && (
                   <li key={staff.id} className={style.listStaff__item}>
-                    <LoadImage
-                      src={avatar}
-                      alt={staff.firstname || "avatar"}
-                      width={100}
-                      height={100}
-                    />
+                    {staff.image && process.env.NEXT_PUBLIC_URL_ASSET && (
+                      <LoadImage
+                        src={
+                          process.env.NEXT_PUBLIC_URL_ASSET + "/" + staff.image
+                        }
+                        alt={staff.lastname}
+                        width={100}
+                        height={100}
+                      />
+                    )}
                     <Link
                       href={{
                         pathname: `staff/${staff.slug}`,

@@ -9,9 +9,10 @@ import LoadImage from "./loadImage";
 import { AnimatePresence, motion } from "framer-motion";
 import { LuPhoneCall, LuMail } from "react-icons/lu";
 import AnimatedWrapper from "./animatedWrapper";
-import { useState, useContext } from "react";
-import { Context } from "../context/context";
+import { useState } from "react";
+
 import styles from "../page.module.scss";
+import { usePathname } from "next/navigation";
 
 type Taddresses = {
   city: string;
@@ -44,6 +45,7 @@ function MainContent({
   staff?: ItemsSitesStaff[];
 }) {
   const [hideInitial, setHideInitial] = useState(true);
+
   const [currentAddress, setCurrentAddress] = useState<string | null>(() => {
     if (data.addresses) {
       return createAddress(
@@ -59,12 +61,13 @@ function MainContent({
   const [activeAddressList, setActiveAddressList] = useState<
     number | undefined
   >(0);
-  const context = useContext(Context);
+
   function staffData(): (ItemsSitesStaff | undefined)[] | undefined {
     return data.staff?.map((item) =>
       staff?.find((staffItem) => staffItem.id === item)
     );
   }
+  const listenToPathChange = usePathname();
 
   if (data) {
     const logo: Files | undefined = assets?.find(
@@ -76,20 +79,19 @@ function MainContent({
 
     return (
       <>
-        {context?.splash && (
-          <AnimatedWrapper
-            logo={logo}
-            name={data.company_name}
-            sede={data.addresses && data.addresses[0].street}
-            contatti={{
-              telefono: data.addresses && data.addresses[0].phone,
-              email: data.addresses && data.addresses[0].email,
-            }}
-            citta={data.addresses && data.addresses[0].city}
-            hideInitial={hideInitial}
-            setHideInitial={setHideInitial}
-          />
-        )}
+        <AnimatedWrapper
+          logo={logo}
+          name={data.company_name}
+          sede={data.addresses && data.addresses[0].street}
+          contatti={{
+            telefono: data.addresses && data.addresses[0].phone,
+            email: data.addresses && data.addresses[0].email,
+          }}
+          citta={data.addresses && data.addresses[0].city}
+          hideInitial={hideInitial}
+          setHideInitial={setHideInitial}
+        />
+
         <AnimatePresence>
           {!hideInitial && (
             <motion.div
