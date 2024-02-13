@@ -3,18 +3,7 @@
 import style from "./components.module.scss";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-
-async function fetchMapData(indirizzo: string) {
-  console.log("fetchMapData" + indirizzo);
-  const data = await fetch(
-    `https://nominatim.openstreetmap.org/search?q=${indirizzo}&format=json&polygon=1&addressdetails=1`
-  )
-    .then((response) => response.json())
-    .then((data) => data)
-    .catch((errore) => console.log(errore + "error fetching data map"));
-
-  return data;
-}
+import { fetchMapData } from "../api/getData";
 
 const Mappa = dynamic(() => import("./map"));
 
@@ -24,7 +13,8 @@ function Footer({ address }: { address: string | null }) {
   console.log(address, "address");
   useEffect(() => {
     async function fetchData(address: string) {
-      const data: any = await fetchMapData(address);
+      const fetchMapDataAction = fetchMapData.bind(null, address);
+      const data: any = await fetchMapDataAction();
 
       if (data) {
         console.log(data, "dati mappa");
