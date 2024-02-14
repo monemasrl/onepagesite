@@ -26,7 +26,6 @@ function AnimatedWrapper({
   hideInitial,
   setHideInitial,
 }: Tdata) {
-  console.log(logo, "logo");
   return (
     <AnimatePresence>
       {hideInitial && (

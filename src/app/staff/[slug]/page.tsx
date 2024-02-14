@@ -10,6 +10,9 @@ import { ItemsSitesStaff } from "../../generated2/models/ItemsSitesStaff";
 import { notFound } from "next/navigation";
 import { type StaticImageData } from "next/image";
 import { ContextProvider } from "../../context/context";
+import { Metadata } from "next/types";
+import { fetchStaffData, fetchStaffDataByID } from "../../api/getData";
+import { ItemsSites } from "../../generated2/models/ItemsSites";
 
 export async function generateStaticParams() {
   if (process.env.URL_STAFF) {
@@ -21,7 +24,6 @@ export async function generateStaticParams() {
     }));
   }
 }
-
 async function getDataStaff(slug: string) {
   if (process.env.URL_STAFF) {
     const staff: any = await fetch(process.env.URL_STAFF).then(
@@ -47,6 +49,42 @@ async function getDataStaff(slug: string) {
           staff.data[staff.data.indexOf(data) - 1]?.firstname +
           " " +
           staff.data[staff.data.indexOf(data) - 1]?.lastname,
+      },
+    };
+  }
+}
+export async function generateMetadata({
+  params,
+}: Tprops): Promise<Metadata | undefined> {
+  if (process.env.URL_STAFF) {
+    const data = await fetch(process.env.URL_STAFF);
+    const dataJson = await data.json();
+    console.log(dataJson, "dataSite");
+    const dataSite: ItemsSitesStaff = await dataJson?.data.find(
+      (item: ItemsSitesStaff) => item.slug === params.slug
+    );
+
+    if (!dataSite) {
+      return {
+        title: "staff page",
+        description: "sooper cool staff page, but not really",
+      };
+    }
+    return {
+      title: dataSite.firstname + " " + dataSite.lastname,
+      description: dataSite.department,
+      openGraph: {
+        title: dataSite.firstname + " " + dataSite.lastname,
+        description: dataSite.department || undefined,
+        type: "website",
+        url: process.env.BASE_URL + "/staff/" + dataSite.slug,
+        images: [
+          {
+            url: `https://cmdb.service.monema.dev/assets/${dataSite.image}.jpg`,
+
+            alt: dataSite.firstname + " " + dataSite.lastname,
+          },
+        ],
       },
     };
   }

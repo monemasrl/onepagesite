@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
@@ -20,11 +19,6 @@ const main = League_Spartan({
   subsets: ["latin"],
   weight: ["600", "500"],
 });
-
-export const metadata: Metadata = {
-  title: "Monema one page site",
-  description: "sooper cool one page site, but not really",
-};
 
 export default function RootLayout({
   children,
