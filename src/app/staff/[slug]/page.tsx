@@ -77,7 +77,7 @@ export async function generateMetadata({
         title: dataSite.firstname + " " + dataSite.lastname,
         description: dataSite.department || undefined,
         type: "website",
-        url: process.env.BASE_URL + "/staff/" + dataSite.slug,
+        url: process.env.SITE_URL + "/staff/" + dataSite.slug,
         images: [
           {
             url: `https://cmdb.service.monema.dev/assets/${dataSite.image}.jpg`,
