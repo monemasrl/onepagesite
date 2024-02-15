@@ -1,9 +1,18 @@
+"use client";
+
+import { useFormState } from "react-dom";
+import { submitContactForm } from "../actions";
+import styles from "./components.module.scss";
+
 function FormContatti() {
+  const [formstate, action] = useFormState(submitContactForm, { message: "" });
+
   return (
-    <div className="formContatti">
+    <div className={styles.formContatti}>
       <h1>Form Contatti</h1>
 
-      <form>
+      <form action={action}>
+        {formstate != undefined && <div>{formstate.message}</div>}
         <label htmlFor="nome">
           Nome:
           <input type="text" name="nome" id="nome" />
